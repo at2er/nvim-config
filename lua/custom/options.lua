@@ -43,6 +43,10 @@ M.options = {
     cursorline = true,
     termguicolors = true,
     background = 'dark',
+
+    signcolumn = 'yes',
+
+    fillchars = [[eob: ]],
 }
 
 M.globals = {

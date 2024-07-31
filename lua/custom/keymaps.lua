@@ -11,6 +11,7 @@ M.mappings.n = {
     ['<c-k>'] = "<c-w>k",
     ['<c-l>'] = "<c-w>l",
     ['<leader>nh'] = "<cmd>set nohlsearch<cr>",
+    ['<leader>ll'] = "<cmd>Lazy<cr>",
 }
 
 M.mappings.v = {
@@ -29,7 +30,8 @@ M.mappings.i = {
 
 -- Put plugin's mappings in this table only.
 M.plugin = {}
-M.plugin.auto_set = { "telescope" }
+--M.plugin.auto_set = {} -- disable auto set plugin's mappings
+M.plugin.auto_set = { "telescope", "conform", "neotree" }
 
 M.plugin.telescope = function ()
     return {
@@ -52,6 +54,47 @@ M.plugin.cmp = function (cmp)
         ['<c-o>'] = mapping.complete(),
         ['<c-e>'] = mapping.abort(),
         ['<tab>'] = mapping.confirm({ select = true }),
+    }
+end
+
+M.plugin.conform = function ()
+    return {
+        n = {
+            ['<leader>F'] = function ()
+                local conform = require('conform')
+                conform.format({ async = true })
+            end
+        }
+    }
+end
+
+M.plugin.lsp = function ()
+    local lsp = vim.lsp
+    return {
+        n = {
+            ['gh'] = lsp.buf.hover,
+            ['gll'] = vim.diagnostic.open_float,
+            ['gd'] = lsp.buf.definition,
+            ['gD'] = lsp.buf.declaration,
+            ['gr'] = lsp.buf.references,
+        }
+    }
+end
+
+--M.plugin.ufo = function (ufo)
+--    return {
+--        n = {
+--            ['zR'] = ufo.openAllFolds,
+--            ['zM'] = ufo.closeAllFolds,
+--        }
+--    }
+--end
+
+M.plugin.neotree = function ()
+    return {
+        n = {
+            ['<leader>e'] = "<cmd>Neotree toggle<cr>"
+        }
     }
 end
 

@@ -56,6 +56,7 @@ end
 M.init = function ()
     M.apply_custom_options()
     M.apply_custom_keymaps()
+    require("custom.autocmd")
 
     M.lazy_nvim_init()
 end
