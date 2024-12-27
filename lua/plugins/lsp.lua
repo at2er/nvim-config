@@ -29,11 +29,6 @@ local M = {
             })
         end,
     },
-    {
-        "j-hui/fidget.nvim",
-        event = { "LspAttach" },
-        opts = {}
-    }
 }
 
 return M
