@@ -35,7 +35,7 @@ M.mappings.i = {
 -- Put plugin's mappings in this table only.
 M.plugin = {}
 --M.plugin.auto_set = {} -- disable auto set plugin's mappings
-M.plugin.auto_set = { "telescope", "conform", "neotree" }
+M.plugin.auto_set = { "telescope", "conform", "neotree", "dap" }
 
 M.plugin.telescope = function ()
   return {
@@ -82,6 +82,9 @@ M.plugin.lsp = function ()
       ['gD'] = lsp.buf.declaration,
       ['gr'] = lsp.buf.references,
       ['ga'] = lsp.buf.code_action,
+      ['<leader>ln'] = vim.diagnostic.goto_next,
+      ['<leader>lp'] = vim.diagnostic.goto_prev,
+      ['<leader>lf'] = lsp.buf.format,
     }
   }
 end
@@ -90,6 +93,16 @@ M.plugin.neotree = function ()
   return {
     n = {
       ['<leader>e'] = "<cmd>Neotree toggle<cr>"
+    }
+  }
+end
+
+M.plugin.dap = function ()
+  return {
+    n = {
+      ["<leader>db"] = "<cmd>DapToggleBreakpoint<cr>",
+      ["<leader>dc"] = "<cmd>DapContinue<cr>",
+      ["<F5>"] = "<cmd>DapContinue<cr>",
     }
   }
 end

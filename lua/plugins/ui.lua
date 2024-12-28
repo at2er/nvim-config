@@ -1,7 +1,7 @@
 local M = {
     --{
     --    "nvim-treesitter/nvim-treesitter",
-    --    event = "User MyVeryLazy",
+    --    event = "VeryLazy",
     --    opts = {
     --        highlight = { enable = true },
     --        indent = { enable = true },
