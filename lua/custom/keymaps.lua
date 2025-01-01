@@ -15,7 +15,7 @@ M.mappings.n = {
   ['<leader>w'] = "<cmd>w<cr>",
   ['<leader>q'] = "<cmd>q<cr>",
   ['<leader>b'] = "<cmd>b#<cr>",
-  ['<leader>s'] = "<cmd>buffers<cr>:",
+  ['<leader>s'] = "<cmd>buffers<cr>:b ",
 }
 
 M.mappings.v = {
@@ -100,9 +100,13 @@ end
 M.plugin.dap = function ()
   return {
     n = {
-      ["<leader>db"] = "<cmd>DapToggleBreakpoint<cr>",
-      ["<leader>dc"] = "<cmd>DapContinue<cr>",
-      ["<F5>"] = "<cmd>DapContinue<cr>",
+      ['<leader>db'] = "<cmd>DapToggleBreakpoint<cr>",
+      ['<leader>dc'] = "<cmd>DapContinue<cr>",
+      ['<leader>do'] = "<cmd>DapStepOut<cr>",
+      ['<leader>dO'] = "<cmd>DapStepOver<cr>",
+      ['<leader>di'] = "<cmd>DapStepInto<cr>",
+      ['<leader>dr'] = "<cmd>DapToggleRepl<cr>",
+      ['<F5>'] = "<cmd>DapContinue<cr>",
     }
   }
 end

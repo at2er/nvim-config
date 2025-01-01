@@ -1,7 +1,14 @@
 local M = {
   {
     "rcarriga/nvim-dap-ui",
-    event = { "VeryLazy" },
+    cmd = {
+      "DapToggleBreakpoint",
+      "DapContinue",
+      "DapStepOut",
+      "DapStepOver",
+      "DapStepInto",
+      "DapToggleRepl",
+    },
     dependencies = {
       "mfussenegger/nvim-dap",
       "nvim-neotest/nvim-nio"
