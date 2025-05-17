@@ -11,6 +11,9 @@ config.c = {
     program = function()
       return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
     end,
+    args = function ()
+      return vim.fn.split(vim.fn.input('Args: '), ' ')
+    end,
     cwd = "${workspaceFolder}",
     stopAtBeginningOfMainSubprogram = true,
   },
@@ -20,6 +23,9 @@ config.c = {
     name = "Launch",
     program = function()
       return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+    end,
+    args = function ()
+      return vim.fn.split(vim.fn.input('Args: '), ' ')
     end,
     cwd = "${workspaceFolder}",
     stopAtBeginningOfMainSubprogram = false,

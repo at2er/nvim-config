@@ -19,4 +19,13 @@ return {
     event = { "VeryLazy" },
     opts = {},
   },
+  {
+    'machakann/vim-swap',
+    event = { 'VeryLazy' },
+  },
+  {
+    'mikavilpas/yazi.nvim',
+    cmd = 'Yazi',
+    opts = {},
+  },
 }

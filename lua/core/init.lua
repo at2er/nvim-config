@@ -73,6 +73,8 @@ M.init = function ()
   if custom_options.config.colorscheme then
     vim.cmd("colorscheme " .. custom_options.config.colorscheme)
   end
+
+  --require("core.tabline").setup(nil)
 end
 
 return M

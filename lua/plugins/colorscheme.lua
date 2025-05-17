@@ -1,16 +1,24 @@
 local M = {
-  --'morhetz/gruvbox',
-  --lazy = false,
-  --priority = 1000,
-  --config = function ()
-    --    vim.cmd([[colorscheme gruvbox]])
-    --end
+    --{
+    --  "at2er/simple-night.nvim",
+    --  opts = {
+    --    transparent = true,
+    --  },
+    --},
     {
-      "at2er/simple-night.nvim",
+      "catppuccin/nvim",
+      name = "catppuccin",
+      priority = 1000,
+      opts = {
+        transparent_background = true,
+        term_colors = true,
+        integrations = {
+          telescope = {
+            enable = true,
+          },
+        },
+      },
     },
-    {
-      "ellisonleao/gruvbox.nvim",
-    }
   }
 
   return M

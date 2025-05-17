@@ -1,3 +1,14 @@
+local function hl()
+  --vim.api.nvim_set_hl(0, 'TelescopeTitle', {
+  --  bg = '#4444aa',
+  --  fg = '#000000'
+  --})
+  --vim.api.nvim_set_hl(0, 'TelescopeSelection', {
+  --  bg = '#4444aa',
+  --  fg = '#000000'
+  --})
+end
+
 local M = {
   'nvim-telescope/telescope.nvim',
   cmd = "Telescope",
@@ -22,6 +33,7 @@ local M = {
         },
       },
       defaults = {
+        borderchars = { ' ', ' ' ,' ' ,' ' ,' ' ,' ' ,' ' ,' ' },
         mappings = {
           i = {
             ["<esc>"] = actions.close
@@ -30,6 +42,7 @@ local M = {
       }
     })
     telescope.load_extension('fzf')
+    hl()
   end,
 }
 

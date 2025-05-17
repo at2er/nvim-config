@@ -10,12 +10,40 @@ M.mappings.n = {
   ['<c-j>'] = "<c-w>j",
   ['<c-k>'] = "<c-w>k",
   ['<c-l>'] = "<c-w>l",
-  ['<leader>nh'] = "<cmd>set nohlsearch<cr>",
+  ['<leader>nh'] = "<cmd>nohl<cr>",
   ['<leader>ll'] = "<cmd>Lazy<cr>",
   ['<leader>w'] = "<cmd>w<cr>",
   ['<leader>q'] = "<cmd>q<cr>",
   ['<leader>b'] = "<cmd>b#<cr>",
   ['<leader>s'] = "<cmd>buffers<cr>:b ",
+  ['<leader><c-n>'] = "<cmd>:tabnext<cr>",
+  ['<leader><c-p>'] = "<cmd>:tabprev<cr>",
+  ['<leader>tt'] = "<cmd>:tabs<cr>:tabn ",
+  ['<leader>tn'] = "<cmd>:tabnew<cr>",
+
+  ['<leader>co'] = "<cmd>:copen<cr>",
+  ['<leader>cn'] = "<cmd>:cnext<cr>",
+  ['<leader>cp'] = "<cmd>:cprev<cr>",
+
+  ['<leader>t1'] = "<cmd>:tabn 1<cr>",
+  ['<leader>t2'] = "<cmd>:tabn 2<cr>",
+  ['<leader>t3'] = "<cmd>:tabn 3<cr>",
+  ['<leader>t4'] = "<cmd>:tabn 4<cr>",
+  ['<leader>t5'] = "<cmd>:tabn 5<cr>",
+  ['<leader>t6'] = "<cmd>:tabn 6<cr>",
+  ['<leader>t7'] = "<cmd>:tabn 7<cr>",
+  ['<leader>t8'] = "<cmd>:tabn 8<cr>",
+  ['<leader>t9'] = "<cmd>:tabn 9<cr>",
+
+  ['<leader>ta'] = "<cmd>:tabn 1<cr>",
+  ['<leader>ts'] = "<cmd>:tabn 2<cr>",
+  ['<leader>td'] = "<cmd>:tabn 3<cr>",
+  ['<leader>tf'] = "<cmd>:tabn 4<cr>",
+  ['<leader>tg'] = "<cmd>:tabn 5<cr>",
+  ['<leader>th'] = "<cmd>:tabn 6<cr>",
+  ['<leader>tj'] = "<cmd>:tabn 7<cr>",
+  ['<leader>tk'] = "<cmd>:tabn 8<cr>",
+  ['<leader>tl'] = "<cmd>:tabn 9<cr>",
 }
 
 M.mappings.v = {
@@ -26,6 +54,7 @@ M.mappings.v = {
 }
 
 M.mappings.i = {
+  ['jk'] = '<esc>',
   ['<c-f>'] = '<right>',
   ['<c-b>'] = '<left>',
   ['<c-n>'] = '<down>',
@@ -35,7 +64,7 @@ M.mappings.i = {
 -- Put plugin's mappings in this table only.
 M.plugin = {}
 --M.plugin.auto_set = {} -- disable auto set plugin's mappings
-M.plugin.auto_set = { "telescope", "conform", "neotree", "dap" }
+M.plugin.auto_set = { "telescope", "conform", "yazi", "dap" }
 
 M.plugin.telescope = function ()
   return {
@@ -48,16 +77,17 @@ M.plugin.telescope = function ()
   }
 end
 
-M.plugin.cmp = function (cmp)
-  local mapping = cmp.mapping
+M.plugin.cmp = function ()
   return {
-    ['<c-b>'] = mapping.scroll_docs(-4),
-    ['<c-f>'] = mapping.scroll_docs(4),
-    ['<c-n>'] = mapping.select_next_item(),
-    ['<c-p>'] = mapping.select_prev_item(),
-    ['<c-o>'] = mapping.complete(),
-    ['<c-e>'] = mapping.abort(),
-    ['<tab>'] = mapping.confirm({ select = true }),
+    preset = 'none',
+    ['<c-b>'] = { 'snippet_backward',          'fallback' },
+    ['<c-f>'] = { 'snippet_forward',           'fallback' },
+    ['<c-d>'] = { 'scroll_documentation_down', 'fallback' },
+    ['<c-u>'] = { 'scroll_documentation_up',   'fallback' },
+    ['<c-n>'] = { 'select_next',               'fallback' },
+    ['<c-p>'] = { 'select_prev',               'fallback' },
+    ['<c-e>'] = { 'cancel',                    'fallback' },
+    ['<tab>'] = { 'select_and_accept',         'fallback' },
   }
 end
 
@@ -93,6 +123,14 @@ M.plugin.neotree = function ()
   return {
     n = {
       ['<leader>e'] = "<cmd>Neotree toggle<cr>"
+    }
+  }
+end
+
+M.plugin.yazi = function ()
+  return {
+    n = {
+      ['<leader>e'] = '<cmd>Yazi toggle<cr>',
     }
   }
 end
