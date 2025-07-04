@@ -16,6 +16,7 @@ config.c = {
     end,
     cwd = "${workspaceFolder}",
     stopAtBeginningOfMainSubprogram = true,
+    console = 'integratedTerminal',
   },
   {
     type = "gdb",
@@ -29,12 +30,34 @@ config.c = {
     end,
     cwd = "${workspaceFolder}",
     stopAtBeginningOfMainSubprogram = false,
+    console = 'integratedTerminal',
   }
 }
 
 config.cpp = config.c
 
-function M.init(dap, dapui)
+function M.setup(dap, dapui)
+  vim.fn.sign_define('DapBreakpoint', {
+    text = '',
+    texthl = 'DapBreakpoint',
+    linehl = '',
+    numhl = 'DapBreakpoint'
+  })
+
+  vim.fn.sign_define('DapBreakpointCondition', {
+    text = '',
+    texthl = 'DapBreakpointCondition',
+    linehl = 'DapBreakpointCondition',
+    numhl = 'DapBreakpointCondition'
+  })
+
+  vim.fn.sign_define('DapStopped', {
+    text = '',
+    texthl = 'DapStopped',
+    linehl = 'DapStopped',
+    numhl = 'DapStopped'
+  })
+
   dap.configurations = config
   dap.adapters = adapters
 end

@@ -1,44 +1,14 @@
 local severity = vim.diagnostic.severity
 local M = {}
 
-M.kind_icons = {
-  Text = ' ',
-  Method = ' ',
-  Function = ' ',
-  Constructor = ' ',
-  Field = ' ',
-  Variable = ' ',
-  Class = ' ',
-  Interface = ' ',
-  Module = ' ',
-  Property = ' ',
-  Unit = ' ',
-  Value = ' ',
-  Enum = ' ',
-  Keyword = ' ',
-  Snippet = ' ',
-  Color = ' ',
-  File = ' ',
-  Reference = ' ',
-  Folder = ' ',
-  EnumMember = ' ',
-  Constant = ' ',
-  Struct = ' ',
-  Event = ' ',
-  Operator = ' ',
-  TypeParameter = ' ',
-}
-
 M.diagnostic = {
   float_diagnostic = {
     enable = false,
     updatetime = 250
   },
   config = {
-    virtual_text = {
-      source = "always",
-      prefix = "●",
-    },
+    virtual_text = false,
+    virtual_lines = true,
     float = {
       source = "always",
     },
@@ -55,11 +25,27 @@ M.diagnostic = {
 }
 
 M.servers = {
-  gopls = {},
-  --clangd = {},
-  lua_ls = {},
-  omnisharp = {},
-  rust_analyzer = {}
+  'clangd',
+  'lua_ls',
+  'pyright',
 }
+
+function M.init()
+  for _, server in ipairs(M.servers) do
+    vim.lsp.enable(server)
+  end
+  vim.diagnostic.config(M.diagnostic.config)
+  vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function (args)
+      local keymaps = require("custom.keymaps").plugin.lsp()
+      local keymap_utils = require("core.keymaps")
+      local use_native_cmp = require("custom.options").config.native_complete
+      keymap_utils.keymaps_set_all(keymaps)
+      if use_native_cmp then
+        require("core.complete").setup(args.buf)
+      end
+    end
+  })
+end
 
 return M

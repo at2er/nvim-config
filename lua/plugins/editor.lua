@@ -1,18 +1,23 @@
 return {
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-      "MunifTanjim/nui.nvim",
-      -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
-    },
-    cmd = "Neotree",
+    "echasnovski/mini.files",
+    keys = require('custom.keymaps').plugin.mini_files,
     opts = {},
-    config = function (_, opts)
-      local neotree = require("neo-tree")
-      neotree.setup(opts)
-    end
+  },
+  {
+    'echasnovski/mini.pairs',
+    event = { "InsertEnter", },
+    opts = {},
+  },
+  {
+    'echasnovski/mini.pick',
+    keys = require('custom.keymaps').plugin.mini_pick,
+    opts = {},
+    config = function (opts)
+      require('mini.pick').setup(opts)
+      ---@diagnostic disable-next-line: undefined-global
+      vim.ui.select = MiniPick.ui_select
+    end,
   },
   {
     "lewis6991/gitsigns.nvim",
@@ -21,11 +26,6 @@ return {
   },
   {
     'machakann/vim-swap',
-    event = { 'VeryLazy' },
-  },
-  {
-    'mikavilpas/yazi.nvim',
-    cmd = 'Yazi',
-    opts = {},
+    keys = require('custom.keymaps').plugin.vim_swap,
   },
 }

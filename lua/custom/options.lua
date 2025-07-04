@@ -1,8 +1,10 @@
 local M = {}
+local lsp = require('custom.lsp')
 
 vim.scriptencoding = 'utf-8'
 
 M.config = {
+  native_complete = false,
   noplugin = false,
   --colorscheme = "simple-night",
   colorscheme = "catppuccin-mocha",
@@ -12,6 +14,7 @@ M.config = {
 }
 
 M.options = {
+  winblend = 30,
   ai = true,
   background = 'dark',
   backspace = 'start,eol,indent',
@@ -26,7 +29,7 @@ M.options = {
   encoding = 'utf-8',
   expandtab = false,
   fileencoding = 'utf-8',
-  fillchars = [[eob: ]],
+  fillchars = [[eob: ,fold: ,foldopen:v,foldclose:>,foldsep: ]],
   guicursor = '',
   hlsearch = true,
   inccommand = 'split',
@@ -52,5 +55,7 @@ M.globals = {
   maplocalleader = ' ',
   mapleader = ' ',
 }
+
+lsp.init()
 
 return M

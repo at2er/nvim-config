@@ -10,12 +10,12 @@ M.mappings.n = {
   ['<c-j>'] = "<c-w>j",
   ['<c-k>'] = "<c-w>k",
   ['<c-l>'] = "<c-w>l",
+  -- ['<leader>e'] = function() MiniFiles.open() end,
   ['<leader>nh'] = "<cmd>nohl<cr>",
   ['<leader>ll'] = "<cmd>Lazy<cr>",
   ['<leader>w'] = "<cmd>w<cr>",
   ['<leader>q'] = "<cmd>q<cr>",
   ['<leader>b'] = "<cmd>b#<cr>",
-  ['<leader>s'] = "<cmd>buffers<cr>:b ",
   ['<leader><c-n>'] = "<cmd>:tabnext<cr>",
   ['<leader><c-p>'] = "<cmd>:tabprev<cr>",
   ['<leader>tt'] = "<cmd>:tabs<cr>:tabn ",
@@ -64,11 +64,12 @@ M.mappings.i = {
 -- Put plugin's mappings in this table only.
 M.plugin = {}
 --M.plugin.auto_set = {} -- disable auto set plugin's mappings
-M.plugin.auto_set = { "telescope", "conform", "yazi", "dap" }
+M.plugin.auto_set = { "conform", "dap" }
 
 M.plugin.telescope = function ()
   return {
     n = {
+      ['<leader>s']  = "<cmd>Telescope buffers<cr>",
       ['<leader>ff'] = "<cmd>Telescope find_files<cr>",
       ['<leader>fg'] = "<cmd>Telescope live_grep<cr>",
       ['<leader>fb'] = "<cmd>Telescope buffers<cr>",
@@ -80,6 +81,7 @@ end
 M.plugin.cmp = function ()
   return {
     preset = 'none',
+    ['<c-o>'] = { 'show',                      'fallback' },
     ['<c-b>'] = { 'snippet_backward',          'fallback' },
     ['<c-f>'] = { 'snippet_forward',           'fallback' },
     ['<c-d>'] = { 'scroll_documentation_down', 'fallback' },
@@ -110,27 +112,12 @@ M.plugin.lsp = function ()
       ['gll'] = vim.diagnostic.open_float,
       ['gd'] = lsp.buf.definition,
       ['gD'] = lsp.buf.declaration,
-      ['gr'] = lsp.buf.references,
+      ['grr'] = ':Telescope lsp_references<cr>',
       ['ga'] = lsp.buf.code_action,
+      ['<leader>ll'] = ':Telescope diagnostics<cr>',
       ['<leader>ln'] = vim.diagnostic.goto_next,
       ['<leader>lp'] = vim.diagnostic.goto_prev,
       ['<leader>lf'] = lsp.buf.format,
-    }
-  }
-end
-
-M.plugin.neotree = function ()
-  return {
-    n = {
-      ['<leader>e'] = "<cmd>Neotree toggle<cr>"
-    }
-  }
-end
-
-M.plugin.yazi = function ()
-  return {
-    n = {
-      ['<leader>e'] = '<cmd>Yazi toggle<cr>',
     }
   }
 end
@@ -139,14 +126,43 @@ M.plugin.dap = function ()
   return {
     n = {
       ['<leader>db'] = "<cmd>DapToggleBreakpoint<cr>",
+      ['<leader>dB'] = function()
+        require('dap').set_breakpoint(
+          vim.fn.input('Condition for break point: '))
+      end,
       ['<leader>dc'] = "<cmd>DapContinue<cr>",
+      ['<leader>dC'] = function() require('dap').run_to_cursor() end,
+      ['<leader>de'] = function()
+        require('dapui').eval(vim.fn.input('Expression: '))
+      end,
       ['<leader>do'] = "<cmd>DapStepOut<cr>",
       ['<leader>dO'] = "<cmd>DapStepOver<cr>",
       ['<leader>di'] = "<cmd>DapStepInto<cr>",
       ['<leader>dr'] = "<cmd>DapToggleRepl<cr>",
+      ['<leader>dR'] = function() require('dap').restart() end,
+      ['<leader>dx'] = function() require('dap').close() end,
       ['<F5>'] = "<cmd>DapContinue<cr>",
     }
   }
 end
+
+M.plugin.mini_files = {
+  ---@diagnostic disable-next-line: undefined-global
+  { '<leader>e', function() MiniFiles.open() end }
+}
+
+M.plugin.mini_pick = {
+  { '<leader>fb', '<cmd>Pick buffers<cr>' },
+  { '<leader>ff', '<cmd>Pick files<cr>' },
+  { '<leader>fg', '<cmd>Pick grep_live<cr>' },
+  { '<leader>fh', '<cmd>Pick help<cr>' },
+}
+
+M.plugin.vim_swap = {
+  { 'g<' },
+  { 'g>' },
+  { 'gs' },
+}
+
 
 return M

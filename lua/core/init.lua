@@ -67,6 +67,7 @@ M.init = function ()
     }, true, {})
   end
   require("custom.autocmd")
+  require('custom.fold').setup()
 
   M.lazy_nvim_init()
 
@@ -74,6 +75,9 @@ M.init = function ()
     vim.cmd("colorscheme " .. custom_options.config.colorscheme)
   end
 
+  if vim.g.neovide then
+    vim.g.neovide_normal_opacity = 0.85
+  end
   --require("core.tabline").setup(nil)
 end
 

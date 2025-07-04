@@ -11,6 +11,13 @@ local M = {
     event = 'VeryLazy',
     opts = {},
   },
+  {
+    'echasnovski/mini.indentscope',
+    event = { 'BufEnter' },
+    opts = {
+      symbol = '│',
+    },
+  }
     --{
     --    'nvim-treesitter/nvim-treesitter',
     --    event = 'VeryLazy',
