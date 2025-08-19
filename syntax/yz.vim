@@ -9,7 +9,6 @@ syn keyword yzKeyword const
 syn keyword yzKeyword enum
 syn keyword yzKeyword for from
 syn keyword yzKeyword import in
-syn keyword yzKeyword mut
 syn keyword yzKeyword null
 syn keyword yzKeyword or
 syn keyword yzKeyword pub
@@ -27,7 +26,8 @@ syn match   yzFunction /\h\w*/ contained nextgroup=yzFunctionArgs skipwhite
 syn region  yzFunctionArgs start=/(/ end=/)/ contains=ALL
 
 " Let
-syn keyword yzKeywordLet let nextgroup=yzIdentifier skipwhite
+syn keyword yzKeywordMut mut
+syn keyword yzKeywordLet let nextgroup=yzKeywordMut,yzIdentifier skipwhite
 syn match   yzIdentifier /\h\w*/ contained
 
 " Module
@@ -56,6 +56,7 @@ hi def link yzFunctionArg Identifier
 hi def link yzIdentifier  Identifier
 hi def link yzKeyword     Keyword
 hi def link yzKeywordLet  yzKeyword
+hi def link yzKeywordMut  yzKeyword
 hi def link yzKeywordRec  yzKeyword
 hi def link yzModule      Special
 hi def link yzNumber      Number

@@ -1,0 +1,31 @@
+{
+	"GPLv3-head": {
+		"prefix": "head-gplv3",
+		"body": [
+			"$BLOCK_COMMENT_START",
+			"  This file is part of ${1:program}.",
+			"",
+			"  ${1:program} is free software: you can redistribute it and/or modify",
+			"  it under the terms of the GNU General Public License as published",
+			"  by the Free Software Foundation, either version 3 of the License,",
+			"  or (at your option) any later version.",
+			"",
+			"  ${1:program} is distributed in the hope that it will be useful, but",
+			"  WITHOUT ANY WARRANTY; without even the implied warranty of",
+			"  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+			"  See the GNU General Public License for more details.",
+			"",
+			"  You should have received a copy of the GNU General Public License",
+			"  along with ${1:program}. If not, see <https://www.gnu.org/licenses/>.",
+			"$BLOCK_COMMENT_END"
+		]
+	},
+	"GPLv3-head-short": {
+		"prefix": "head-s-gplv3",
+		"body": [
+			"$BLOCK_COMMENT_START This file is part of ${1:program}.",
+			"   SPDX-License-Identifier: GPL-3.0",
+			"$BLOCK_COMMENT_END"
+		]
+	}
+}

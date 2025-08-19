@@ -26,6 +26,7 @@ M.diagnostic = {
 
 M.servers = {
   'clangd',
+  'gopls',
   'lua_ls',
   'pyright',
 }
