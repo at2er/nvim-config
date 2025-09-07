@@ -9,12 +9,17 @@ syn keyword yzKeyword const
 syn keyword yzKeyword enum
 syn keyword yzKeyword for from
 syn keyword yzKeyword import in
+syn keyword yzKeyword match
 syn keyword yzKeyword null
 syn keyword yzKeyword or
 syn keyword yzKeyword pub
 syn keyword yzKeyword ret
 syn keyword yzKeyword struct
+syn keyword yzKeyword then
 syn keyword yzKeyword while
+
+syn match yzSpecial /=>/
+syn match yzSpecial /|/
 
 " Conditional
 syn keyword yzConditional cond elif else if
@@ -54,6 +59,7 @@ hi def link yzDecorator   PreProc
 hi def link yzFunction    Function
 hi def link yzFunctionArg Identifier
 hi def link yzIdentifier  Identifier
+hi def link yzSpecial     Special
 hi def link yzKeyword     Keyword
 hi def link yzKeywordLet  yzKeyword
 hi def link yzKeywordMut  yzKeyword

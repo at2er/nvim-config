@@ -12,7 +12,7 @@ M.opt = {
 function M.custom_foldtext()
   local line = vim.fn.getline(vim.v.foldstart)
   local foldnum = vim.v.foldend - vim.v.foldstart
-  local result = ' ' .. line .. 'lines: ' .. foldnum
+  local result = ' ' .. line .. ' lines: ' .. foldnum
   return result
 end
 -- }}}

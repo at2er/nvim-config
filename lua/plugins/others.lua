@@ -1,6 +1,6 @@
 return {
   {
-    "dstein64/vim-startuptime",
-    cmd = "StartupTime",
+    'dstein64/vim-startuptime',
+    cmd = 'StartupTime',
   }
 }

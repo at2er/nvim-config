@@ -1,17 +1,7 @@
-local function hl()
-  --vim.api.nvim_set_hl(0, 'TelescopeTitle', {
-  --  bg = '#4444aa',
-  --  fg = '#000000'
-  --})
-  --vim.api.nvim_set_hl(0, 'TelescopeSelection', {
-  --  bg = '#4444aa',
-  --  fg = '#000000'
-  --})
-end
-
 local M = {
   'nvim-telescope/telescope.nvim',
-  cmd = "Telescope",
+  cmd = 'Telescope',
+  keys = require('custom.keymaps').plugin.telescope,
   dependencies = {
     'nvim-tree/nvim-web-devicons',
     'nvim-lua/plenary.nvim',
@@ -26,27 +16,20 @@ local M = {
     local actions = require('telescope.actions')
     telescope.setup({
       pickers = {
-        lsp_references = {
-          theme = "dropdown",
-        },
-        find_files = {
-          theme = "dropdown",
-        },
-        live_grep = {
-          theme = "dropdown",
-        },
+        lsp_references = { theme = 'dropdown', },
+        find_files     = { theme = 'dropdown', },
+        live_grep      = { theme = 'dropdown', },
       },
       defaults = {
         borderchars = { ' ', ' ' ,' ' ,' ' ,' ' ,' ' ,' ' ,' ' },
         mappings = {
           i = {
-            ["<esc>"] = actions.close
+            ['<esc>'] = actions.close
           }
         }
       }
     })
     telescope.load_extension('fzf')
-    hl()
   end,
 }
 

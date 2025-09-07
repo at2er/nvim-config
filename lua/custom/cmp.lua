@@ -13,8 +13,8 @@ M.opts = {
           }
         },
         columns = {
-          { "label", "label_description", gap = 1 },
-          { "source_name" },
+          { 'label', 'label_description', gap = 1 },
+          { 'source_name' },
         },
       },
     },

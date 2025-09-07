@@ -5,30 +5,30 @@ local vim = vim
 
 config.c = {
   {
-    type = "gdb",
-    request = "launch",
-    name = "Launch and stop at main",
+    type = 'gdb',
+    request = 'launch',
+    name = 'Launch and stop at main',
     program = function()
       return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
     end,
     args = function ()
       return vim.fn.split(vim.fn.input('Args: '), ' ')
     end,
-    cwd = "${workspaceFolder}",
+    cwd = '${workspaceFolder}',
     stopAtBeginningOfMainSubprogram = true,
     console = 'integratedTerminal',
   },
   {
-    type = "gdb",
-    request = "launch",
-    name = "Launch",
+    type = 'gdb',
+    request = 'launch',
+    name = 'Launch',
     program = function()
       return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
     end,
     args = function ()
       return vim.fn.split(vim.fn.input('Args: '), ' ')
     end,
-    cwd = "${workspaceFolder}",
+    cwd = '${workspaceFolder}',
     stopAtBeginningOfMainSubprogram = false,
     console = 'integratedTerminal',
   }

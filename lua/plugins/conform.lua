@@ -1,12 +1,13 @@
 return {
-  "stevearc/conform.nvim",
-  event = { "BufWritePre" },
-  cmd = { "ConformInfo" },
+  'stevearc/conform.nvim',
+  cmd = { 'ConformInfo' },
+  event = { 'BufWritePre' },
+  keys = require('custom.keymaps').plugin.conform,
   opts = {
     formatters_by_ft = {
-      c = { "clang_format" },
-      lua = { "stylua" },
-      javascript = { "prettierd" },
+      c = { 'clang_format' },
+      lua = { 'stylua' },
+      javascript = { 'prettierd' },
     },
   }
 }

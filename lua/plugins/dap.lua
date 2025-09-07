@@ -1,18 +1,19 @@
 local M = {
   {
-    "rcarriga/nvim-dap-ui",
+    'rcarriga/nvim-dap-ui',
     cmd = {
-      "DapToggleBreakpoint",
-      "DapContinue",
-      "DapStepOut",
-      "DapStepOver",
-      "DapStepInto",
-      "DapToggleRepl",
+      'DapToggleBreakpoint',
+      'DapContinue',
+      'DapStepOut',
+      'DapStepOver',
+      'DapStepInto',
+      'DapToggleRepl',
     },
+    keys = require('custom.keymaps').plugin.dap,
     dependencies = {
-      "mfussenegger/nvim-dap",
-      "nvim-neotest/nvim-nio",
-      "theHamsta/nvim-dap-virtual-text",
+      'mfussenegger/nvim-dap',
+      'nvim-neotest/nvim-nio',
+      'theHamsta/nvim-dap-virtual-text',
     },
     config = function ()
       local conf = require('custom.dap.config')
