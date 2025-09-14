@@ -1,21 +1,30 @@
 return {
   {
-    'echasnovski/mini.files',
-    keys = require('custom.keymaps').plugin.mini_files,
+    'nvim-mini/mini.files',
+    keys = {
+      ---@diagnostic disable-next-line: undefined-global
+      { '<leader>e', function () MiniFiles.open() end }
+    },
     opts = {},
   },
   {
-    'echasnovski/mini.pairs',
+    'nvim-mini/mini.pairs',
     event = { 'InsertEnter', },
     opts = {},
   },
   {
-    'lewis6991/gitsigns.nvim',
+    'nvim-mini/mini.diff',
+    enabled = false,
     event = { 'VeryLazy' },
-    opts = {},
+    opts = {
+      view = {
+        style = 'sign',
+        signs = { add = '│', change = '│', delete = '│' }
+      }
+    },
   },
   {
     'machakann/vim-swap',
-    keys = require('custom.keymaps').plugin.vim_swap,
+    keys = { 'g<', 'g>', 'gs', },
   },
 }

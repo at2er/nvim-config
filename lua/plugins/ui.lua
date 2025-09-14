@@ -11,13 +11,6 @@ local M = {
     event = 'VeryLazy',
     opts = {},
   },
-  {
-    'echasnovski/mini.indentscope',
-    event = { 'BufEnter' },
-    opts = {
-      symbol = '│',
-    },
-  }
 }
 
 return M

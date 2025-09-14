@@ -1,10 +1,6 @@
 local M = {}
 M.default_opt = { noremap = true, silent = true }
 
-local function table_keymap_set(mode, key, map)
-  vim.keymap.set(mode, key, map[1], map["opt"])
-end
-
 M.keymap_set = function (mode, key, map)
   local map_type = type(map)
   if map_type == "string" or map_type == "function" then
@@ -14,7 +10,7 @@ M.keymap_set = function (mode, key, map)
       vim.keymap.set(mode, key, map[1], M.default_opt)
       return false
     end
-    table_keymap_set(mode, key, map)
+    vim.keymap.set(mode, key, map[1], map["opt"])
   else
     return false
   end

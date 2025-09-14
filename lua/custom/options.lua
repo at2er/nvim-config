@@ -1,61 +1,57 @@
 local M = {}
-local lsp = require('custom.lsp')
+local opt = vim.opt
 
 vim.scriptencoding = 'utf-8'
 
-M.config = {
-  native_complete = false,
-  noplugin = false,
-  --colorscheme = 'simple-night',
-  colorscheme = 'catppuccin-mocha',
-  --default = {
-  --    keymap_option = { noremap = true, silent = true },
-  --},
+opt.winblend = 30
+opt.autoindent = true
+opt.background = 'dark'
+opt.backspace = 'start,eol,indent'
+opt.backup = false
+opt.backupskip = '/tmp/*,'
+opt.breakindent = true
+opt.clipboard = 'unnamedplus'
+opt.cmdheight = 1
+opt.colorcolumn = '80'
+opt.completeopt = 'menuone,noselect,popup'
+opt.cursorline = false
+opt.encoding = 'utf-8'
+opt.expandtab = false
+opt.fileencoding = 'utf-8'
+opt.fillchars = {
+  eob = ' ',
+  fold = ' ',
+  foldclose = '>',
+  foldopen = 'v',
+  foldsep = ' ',
 }
-
-M.options = {
-  winblend = 30,
-  autoindent = true,
-  background = 'dark',
-  backspace = 'start,eol,indent',
-  backup = false,
-  backupskip = '/tmp/*,',
-  breakindent = true,
-  clipboard = 'unnamedplus',
-  cmdheight = 1,
-  colorcolumn = '80',
-  completeopt = 'menu,popup',
-  cursorline = false,
-  encoding = 'utf-8',
-  expandtab = false,
-  fileencoding = 'utf-8',
-  fillchars = [[eob: ,fold: ,foldopen:v,foldclose:>,foldsep: ]],
-  --guicursor = '',
-  hlsearch = true,
-  inccommand = 'split',
-  laststatus = 2,
-  list = true,
-  listchars = [[tab:>-,trail:+]],
-  number = true,
-  relativenumber = true,
-  scrolloff = 5,
-  shiftwidth = 8,
-  showcmd = true,
-  showmode = false,
-  signcolumn = 'yes',
-  smartindent = true,
-  smarttab = true,
-  tabstop = 8,
-  termguicolors = true,
-  title = true,
-  wrap = true,
+--opt.guicursor = ''
+opt.hlsearch = true
+opt.inccommand = 'split'
+opt.laststatus = 0
+opt.list = true
+opt.listchars = {
+  --tab = '>-',
+  trail = '+',
 }
+opt.number = true
+opt.relativenumber = true
+opt.scrolloff = 5
+opt.shiftwidth = 8
+opt.showcmd = true
+opt.showmode = false
+opt.signcolumn = 'yes'
+opt.smartindent = true
+opt.smarttab = true
+opt.splitbelow = true
+opt.splitkeep = "screen"
+opt.splitright = true
+opt.tabstop = 8
+opt.termguicolors = true
+opt.title = true
+opt.winborder = ""
+opt.wrap = true
 
-M.globals = {
-  maplocalleader = ' ',
-  mapleader = ' ',
-}
-
-lsp.init()
+vim.g.netrw_banner = 0
 
 return M

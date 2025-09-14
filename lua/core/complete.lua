@@ -1,4 +1,15 @@
 local M = {}
+
+local gr = vim.api.nvim_create_augroup('my.completion', {})
+
+local function au(event, pattern, callback)
+  vim.api.nvim_create_autocmd(event, {
+    group = gr,
+    pattern = pattern,
+    callback = callback
+  })
+end
+
 local function hover()
   local params = vim.lsp.util.make_position_params()
   local pum_pos = vim.fn.pum_getpos()
@@ -14,17 +25,20 @@ local function hover()
   ))
 end
 
-function M.setup(buf)
-  vim.bo[buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+function M.setup(args)
+  local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+  vim.bo[args.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+  if client:supports_method('textDocument/completion') then
+    vim.lsp.completion.enable(true, client.id, args.buf, {
+      autotrigger = true
+    })
+  end
   -- show popup on the side of the code suggestions
-  vim.api.nvim_create_autocmd('CompleteChanged', {
-    pattern = '*',
-    callback = function()
-      if vim.fn.pumvisible() == 1 then
-        vim.schedule(hover)
-      end
-    end,
-  })
+  au('CompleteChanged', '*', function()
+    if vim.fn.pumvisible() == 1 then
+      vim.schedule(hover)
+    end
+  end)
 end
 
 return M

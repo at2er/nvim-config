@@ -1,8 +1,9 @@
 return {
   'stevearc/conform.nvim',
   cmd = { 'ConformInfo' },
-  event = { 'BufWritePre' },
-  keys = require('custom.keymaps').plugin.conform,
+  keys = {
+    {'<leader>F', function () require('conform').format({ async = true }) end},
+  },
   opts = {
     formatters_by_ft = {
       c = { 'clang_format' },
